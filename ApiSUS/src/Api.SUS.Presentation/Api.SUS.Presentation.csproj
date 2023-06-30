@@ -6,4 +6,13 @@
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\..\Api.SUS.Client\Api.SUS.Client.csproj" />
+    <ProjectReference Include="..\Api.SUS.Application\Api.SUS.Application.csproj" />
+    <ProjectReference Include="..\Api.SUS.CrossCutting\Api.SUS.CrossCutting.Validators.csproj" />
+    <ProjectReference Include="..\Api.SUS.Data\Api.SUS.Data.csproj" />
+    <ProjectReference Include="..\Api.SUS.Domain\Api.SUS.Domain.csproj" />
+    <ProjectReference Include="..\Api.SUS.Reports\Api.SUS.Reports.csproj" />
+  </ItemGroup>
+
 </Project>

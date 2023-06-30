@@ -14,6 +14,7 @@ namespace Api.SUS.Domain.Entities
         }
 
         public Guid RelatorioId { get; set; }
+        public Guid SolicitanteId { get; set; }
         public DateTime DataSolicitacao { get; set; }
         public DateTime DataAplicacao { get; set; }
         public string Descricao { get; set; }

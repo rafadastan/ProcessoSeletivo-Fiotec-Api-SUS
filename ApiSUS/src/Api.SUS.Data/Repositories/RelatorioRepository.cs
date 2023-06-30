@@ -1,4 +1,5 @@
-﻿using Api.SUS.Domain.Contracts.Infra;
+﻿using Api.SUS.Data.Contexts;
+using Api.SUS.Domain.Contracts.Infra.Repo;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,5 +10,11 @@ namespace Api.SUS.Data.Repositories
 {
     public class RelatorioRepository : IRelatorioRepository
     {
+        private readonly SqlContext _sqlContext;
+
+        public RelatorioRepository(SqlContext sqlContext)
+        {
+            _sqlContext = sqlContext;
+        }
     }
 }
