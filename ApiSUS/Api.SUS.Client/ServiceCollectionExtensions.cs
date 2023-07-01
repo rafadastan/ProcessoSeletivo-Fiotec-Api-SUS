@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Api.SUS.Client.Contracts;
 using Api.SUS.Client.Service;
+using Api.SUS.Domain.Contracts.Client;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Api.SUS.Client

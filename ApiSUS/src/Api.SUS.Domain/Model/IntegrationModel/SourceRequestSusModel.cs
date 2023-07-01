@@ -5,9 +5,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Api.SUS.Client.Dto
+namespace Api.SUS.Domain.Model.IntegrationModel
 {
-    public class SourceRequestSusDto
+    public class SourceRequestSusModel
     {
         [JsonProperty(PropertyName = "vacina_categoria_codigo")]
         public string VacinaCategoriaCodigo { get; set; }

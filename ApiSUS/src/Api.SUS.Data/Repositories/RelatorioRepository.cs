@@ -1,20 +1,19 @@
 ﻿using Api.SUS.Data.Contexts;
-using Api.SUS.Domain.Contracts.Infra.Repo;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Api.SUS.Domain.Contracts.Repo;
+using Api.SUS.Domain.Entities;
 
 namespace Api.SUS.Data.Repositories
 {
-    public class RelatorioRepository : IRelatorioRepository
+    public class RelatorioRepository : BaseRepository<Relatorio, Guid>, 
+        IRelatorioRepository
     {
-        private readonly SqlContext _sqlContext;
-
-        public RelatorioRepository(SqlContext sqlContext)
+        public RelatorioRepository(SqlContext context) : base(context)
         {
-            _sqlContext = sqlContext;
         }
     }
 }

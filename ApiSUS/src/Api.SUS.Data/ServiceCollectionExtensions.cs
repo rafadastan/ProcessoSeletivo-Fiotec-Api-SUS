@@ -1,12 +1,24 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Api.SUS.Data.ReadRepositories;
+using Api.SUS.Data.Repositories;
+using Api.SUS.Domain.Contracts.ReadRepo;
+using Api.SUS.Domain.Contracts.Repo;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace Api.SUS.Data
 {
-    public class ServiceCollectionExtensions
+    public static class ServiceCollectionExtensions
     {
+        public static IServiceCollection AddInfraDependencyInjection(
+            this IServiceCollection services)
+        {
+            services.AddTransient<IRelatorioReadRepository, RelatorioReadRepository>();
+            services.AddTransient<ISolicitanteReadRepository, SolicitanteReadRepository>();
+
+            services.AddTransient<IRelatorioRepository, RelatorioRepository>();
+            services.AddTransient<ISolicitanteRepository, SolicitanteRepository>();
+            services.AddTransient<IUnitOfWork, UnitOfWork>();
+
+            return services;
+        }
     }
 }

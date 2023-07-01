@@ -5,9 +5,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Api.SUS.Client.Dto
+namespace Api.SUS.Domain.Model.IntegrationModel
 {
-    public class RequestSizeDto
+    public class RequestSizeModel
     {
         [JsonProperty(PropertyName = "size")]
         public int Size { get; set; }

@@ -5,9 +5,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Api.SUS.Client.Dto
+namespace Api.SUS.Domain.Model.IntegrationModel
 {
-    public class ResponseSusDto
+    public class ResponseSusModel
     {
         [JsonProperty(PropertyName = "_id")]
         public Guid Id { get; set; }
@@ -22,6 +22,6 @@ namespace Api.SUS.Client.Dto
         public int Score { get; set; }
 
         [JsonProperty(PropertyName = "_source")]
-        public SourceRequestSusDto Source { get; set; }
+        public SourceRequestSusModel Source { get; set; }
     }
 }

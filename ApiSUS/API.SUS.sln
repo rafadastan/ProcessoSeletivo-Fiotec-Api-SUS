@@ -27,13 +27,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Api.SUS.Data", "src\Api.SUS
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Api.SUS.Reports", "src\Api.SUS.Reports\Api.SUS.Reports.csproj", "{09390ECA-CF77-4DCA-ACA7-9F478534838F}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Api.SUS.CrossCutting.Validators", "src\Api.SUS.CrossCutting\Api.SUS.CrossCutting.Validators.csproj", "{D521C51E-E2A8-439C-BDB9-FD2F5C5778AE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Api.SUS.CrossCutting", "src\Api.SUS.CrossCutting\Api.SUS.CrossCutting.csproj", "{D521C51E-E2A8-439C-BDB9-FD2F5C5778AE}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Api.SUS.Presentation", "src\Api.SUS.Presentation\Api.SUS.Presentation.csproj", "{9A7A8938-8844-4F54-9E71-4927C45740B1}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "4.3 Client", "4.3 Client", "{D1C193B6-B713-48E2-A829-1BE0E2FA381F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Api.SUS.Client", "Api.SUS.Client\Api.SUS.Client.csproj", "{8991615E-1294-4141-8A96-D6ECACA5E75B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Api.SUS.Client", "Api.SUS.Client\Api.SUS.Client.csproj", "{8991615E-1294-4141-8A96-D6ECACA5E75B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

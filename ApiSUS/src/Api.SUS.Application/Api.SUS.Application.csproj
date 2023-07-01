@@ -13,6 +13,13 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Api.SUS.Domain\Api.SUS.Domain.csproj" />
+    <ProjectReference Include="..\Api.SUS.Reports\Api.SUS.Reports.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="DevExpress.XtraReports.v21.2">
+      <HintPath>..\..\..\..\..\..\Program Files (x86)\DevExpress 21.2\Components\Offline Packages\devexpress.reporting.core\21.2.4\lib\netstandard2.0\DevExpress.XtraReports.v21.2.dll</HintPath>
+    </Reference>
   </ItemGroup>
 
 </Project>

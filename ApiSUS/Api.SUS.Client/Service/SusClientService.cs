@@ -6,12 +6,13 @@ using System.Net.Http.Headers;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
-using Api.SUS.Client.Contracts;
 using Api.SUS.Domain.Notifications;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using Newtonsoft.Json;
 using Api.SUS.Client.Dto;
+using Api.SUS.Domain.Contracts.Client;
+using Api.SUS.Domain.Model.IntegrationModel;
 
 namespace Api.SUS.Client.Service
 {
@@ -36,13 +37,13 @@ namespace Api.SUS.Client.Service
                 _httpClient.BaseAddress = new Uri(_httpClient.BaseAddress!, $"{_aliasConfig}/");
         }
 
-        public async Task<List<ResponseSusDto>?> GetInformationAsync()
+        public async Task<List<MainRequestDto>?> GetInformationAsync()
         {
-            var responseSus = new List<ResponseSusDto>();
+            var responseSus = new List<MainRequestDto>();
 
             ConfigurationAddHeaders();
 
-            var size = new RequestSizeDto
+            var size = new RequestSizeModel
             {
                 Size = 1000
             };
@@ -58,7 +59,7 @@ namespace Api.SUS.Client.Service
 
             if (ret != null! && response.IsSuccessStatusCode)
             {
-                responseSus = JsonConvert.DeserializeObject<List<ResponseSusDto>>(ret);
+                responseSus = JsonConvert.DeserializeObject<List<MainRequestDto>>(ret);
 
                 return responseSus;
             }

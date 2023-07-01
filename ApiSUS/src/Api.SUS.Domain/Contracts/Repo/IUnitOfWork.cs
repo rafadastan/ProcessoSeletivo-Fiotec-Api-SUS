@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Api.SUS.Domain.Contracts.Infra.Repo
+﻿namespace Api.SUS.Domain.Contracts.Repo
 {
     public interface IUnitOfWork
     {
@@ -15,6 +9,5 @@ namespace Api.SUS.Domain.Contracts.Infra.Repo
 
         IRelatorioRepository RelatorioRepository { get; }
         ISolicitanteRepository SolicitanteRepository { get; }
-
     }
 }

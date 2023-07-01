@@ -1,11 +1,6 @@
 ﻿using Api.SUS.Data.Contexts;
-using Api.SUS.Domain.Contracts.Infra.Repo;
 using Microsoft.EntityFrameworkCore.Storage;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Api.SUS.Domain.Contracts.Repo;
 
 namespace Api.SUS.Data.Repositories
 {
