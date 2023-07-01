@@ -6,7 +6,7 @@ Construção de uma API para buscar os dados de vacinação.
 Arquitetura ultizada foi DDD (Domain Driven Design) arquitetura em camada, desenvolvido para separar
 o domínio do restante da aplicação.
 
-#Linguens e tecnologias
+# Linguens e tecnologias
 
 Foi usado .Net 6 uma das versões mais atuais da framework, também utizando banco de dados sql server,
 conceitos como UnitOfWork para tratamento de concorrencia no banco de dados, metodos assincronos 
