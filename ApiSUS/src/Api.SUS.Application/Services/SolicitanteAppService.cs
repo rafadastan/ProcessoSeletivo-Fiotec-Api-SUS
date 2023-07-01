@@ -9,6 +9,7 @@ using Api.SUS.Application.Model;
 using Api.SUS.Domain.Contracts.Domain;
 using Api.SUS.Domain.Contracts.ReadRepo;
 using Api.SUS.Domain.Entities;
+using Api.SUS.Domain.Entities.Base;
 using Api.SUS.Domain.Notifications;
 using Api.SUS.Reports.Reports;
 using AutoMapper;
@@ -40,6 +41,8 @@ namespace Api.SUS.Application.Services
 
         public async Task<XtraReport> SendAsync(SolicitanteModel model)
         {
+            RemoveSpecialCharacterCpf(model);
+
             var solicitanteDto = SolicitanteFactory(model);
 
             var solicitante = _mapper.Map<Solicitante>(solicitanteDto);
@@ -48,13 +51,18 @@ namespace Api.SUS.Application.Services
             if (_notification.HasNotifications) return null;
             
             var dadosSolicitante = await _solicitanteReadRepository.GetByCpf(model.CPF);
+            if (dadosSolicitante == null)
+            {
+                _notification.AddNotification(Guid.NewGuid().ToString(), "Erro ao buscar dado no banco de dados.");
+                return null;
+            }
 
             var dadosRelatorio =
                 await _relatorioReadRepository.GetAllBySolicitanteAsync(dadosSolicitante.SolicitanteId);
             
             return !_notification.HasNotifications ? new RelatorioSus(dadosRelatorio) : null!;
         }
-
+        
         public async Task<int> GetTotalVacinasAplicada(DateTime date)
         {
             var total = await _domainService.GetTotalVacinasAplicadas(date);
@@ -71,6 +79,11 @@ namespace Api.SUS.Application.Services
                 CPF = model.CPF,
                 DataConsulta = DateTime.Now.Date
             };
+        }
+
+        private static void RemoveSpecialCharacterCpf(SolicitanteModel model)
+        {
+            model.CPF = String.Join("", System.Text.RegularExpressions.Regex.Split(model.CPF, @"[^\d]"));
         }
     }
 }

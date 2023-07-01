@@ -26,7 +26,7 @@ namespace Api.SUS.Data.ReadRepositories
             await using var connection = new SqlConnection(_susConnectionString);
             var query = await connection.QueryAsync<Relatorio>(@"
                 SELECT * FROM Relatorio r
-                WHERE r.Id = @Id",
+                WHERE r.RelatorioId = @Id",
                 new
                 {
                     Id = id
@@ -41,12 +41,23 @@ namespace Api.SUS.Data.ReadRepositories
             var query = await connection.QueryAsync<RelatorioBySolicitanteDto>(@"
                 SELECT r.*, s.Nome FROM Relatorio r
                     INNER JOIN Solicitante s ON s.SolicitanteId = r.SolicitanteId
-                WHERE r.SolicitanteId = @SolicitanteId",
+                WHERE r.SolicitanteId = @SolicitanteId
+                ORDER BY r.DataAplicacao",
                 new
                 {
                     SolicitanteId = solicitanteId
                 });
 
+
+            return query.ToList();
+        }
+
+        public async Task<IEnumerable<Relatorio>> GetAllAsync()
+        {
+            await using var connection = new SqlConnection(_susConnectionString);
+            var query = await connection.QueryAsync<Relatorio>(@"
+                SELECT * FROM Relatorio r
+                ORDER BY r.DataAplicacao");
 
             return query.ToList();
         }

@@ -21,6 +21,7 @@ namespace Api.SUS.Client.Service
         private readonly IConfiguration _configuration;
         private readonly NotificationContext _notificationContext;
         private readonly string _aliasConfig;
+        private readonly int _size;
 
         public SusClientService(
             HttpClient httpClient,
@@ -32,6 +33,7 @@ namespace Api.SUS.Client.Service
             _notificationContext = notificationContext;
 
             _aliasConfig = $"{configuration["IntegracaoSus:Alias"]}";
+            _size = int.Parse(configuration["IntegracaoSus:Size"]);
         }
 
         public async Task<MainRequestDto> GetInformationAsync()
@@ -42,7 +44,7 @@ namespace Api.SUS.Client.Service
 
             var size = new RequestSizeModel
             {
-                Size = 1000
+                Size = _size
             };
             
             using var response = await _httpClient.PostAsync(_aliasConfig, CreateStringContent(size));

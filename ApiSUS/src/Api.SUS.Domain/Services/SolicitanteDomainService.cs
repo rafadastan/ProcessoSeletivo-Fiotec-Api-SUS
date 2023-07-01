@@ -36,7 +36,7 @@ namespace Api.SUS.Domain.Services
         public async Task CreateSolicitanteAsync(Solicitante entity)
         { 
             Solicitante solicitanteEntity;
-
+            
             if (!CpfValidation.IsValid(entity.CPF))
             {
                 _notification.AddNotification(entity.SolicitanteId.ToString(), $"{entity.CPF} é invalido.");
@@ -54,6 +54,7 @@ namespace Api.SUS.Domain.Services
                     if (solicitanteEntity == null!)
                     {
                         _notification.AddNotification(Guid.NewGuid().ToString(), $"Erro ao salvar.");
+                        return;
                     }
 
                     await _unitOfWork.SaveAsync();

@@ -7,5 +7,6 @@ namespace Api.SUS.Domain.Contracts.ReadRepo
     {
         Task<Relatorio> GetByIdAsync(Guid id);
         Task<IEnumerable<RelatorioBySolicitanteDto>> GetAllBySolicitanteAsync(Guid solicitanteId);
+        Task<IEnumerable<Relatorio>> GetAllAsync();
     }
 }
