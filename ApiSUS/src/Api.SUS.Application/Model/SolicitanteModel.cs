@@ -10,6 +10,5 @@ namespace Api.SUS.Application.Model
     {
         public string Nome { get; set; }
         public string CPF { get; set; }
-        public DateTime? DataSolicitante { get; set; }
     }
 }

@@ -16,11 +16,11 @@ namespace Api.SUS.Domain
         public static IServiceCollection AddDomainDependencyInjection(
             this IServiceCollection services)
         {
-            //services.AddScoped<NotificationFilter>();
-            services.AddScoped<NotificationContext>();
-
             services.AddTransient<IRelatorioDomainService, RelatorioDomainService>();
             services.AddTransient<ISolicitanteDomainService, SolicitanteDomainService>();
+
+            //services.AddScoped<NotificationFilter>();
+            services.AddScoped<NotificationContext>();
 
             return services;
         }

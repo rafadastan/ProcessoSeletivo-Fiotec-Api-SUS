@@ -19,12 +19,6 @@ namespace Api.SUS.Data.Contexts
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Solicitante>()
-                .HasIndex(c => c.Id);
-
-            modelBuilder.Entity<Relatorio>()
-                .HasIndex(c => c.Id);
-
             modelBuilder.Entity<Solicitante>(entity => {
                 entity.HasIndex(c => c.CPF).IsUnique();
             });

@@ -22,6 +22,7 @@ namespace Api.SUS.Domain.FluentValidations
 
             RuleFor(r => r.CPF)
                 .NotEmpty()
+                .Length(1,11)
                 .WithMessage("O CPF não pode ser nulo.");
 
             RuleFor(r => r.DataConsulta)

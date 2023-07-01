@@ -14,16 +14,15 @@ namespace Api.SUS.Data.ReadRepositories
         public SolicitanteReadRepository(IConfiguration configuration)
         {
             _configuration = configuration;
-            _susConnectionString = _configuration["ConnectionStrings:ApiSus"]; ;
+            _susConnectionString = _configuration["ConnectionStrings:ApiSus"]; 
         }
 
         public async Task<bool> GetByCpfExists(string cpf)
         {
             await using var connection = new SqlConnection(_susConnectionString);
-            var query = await connection.QueryAsync(@"
+            var query = await connection.QueryAsync<Solicitante>(@"
                 SELECT s.Cpf FROM Solicitante s
-                WHERE s.Nome = @Nome 
-                AND s.Cpf = @CPF", 
+                WHERE s.Cpf = @CPF", 
              new
             {
                  CPF = cpf
@@ -32,17 +31,15 @@ namespace Api.SUS.Data.ReadRepositories
             return query.Any();
         }
 
-        public async Task<Solicitante> GetByCpfAndName(string cpf, string name)
+        public async Task<Solicitante> GetByCpf(string cpf)
         {
             await using var connection = new SqlConnection(_susConnectionString);
-            var query = await connection.QueryAsync(@"
+            var query = await connection.QueryAsync<Solicitante>(@"
                 SELECT * FROM Solicitante s
-                WHERE s.Nome = @Nome 
-                AND s.Cpf = @CPF",
+                WHERE s.Cpf = @CPF",
                 new
                 {
-                    CPF = cpf,
-                    Name = name
+                    CPF = cpf
                 });
 
             return query.FirstOrDefault()!;

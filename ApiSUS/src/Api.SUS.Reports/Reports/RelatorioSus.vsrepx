@@ -1,0 +1,68 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<XtraReportsLayoutSerializer SerializerVersion="21.2.4.0" Ref="0" ControlType="DevExpress.XtraReports.UI.XtraReport, DevExpress.XtraReports.v21.2, Version=21.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" Name="RelatorioSus" DrawGrid="false" SnappingMode="SnapToGrid" Margins="100, 100, 196, 100" PageWidth="850" PageHeight="1100" Version="21.2" Font="Arial, 9.75pt">
+  <Extensions>
+    <Item1 Ref="1" Key="VSReportExtInfo" Value=".vsrepx" />
+  </Extensions>
+  <Bands>
+    <Item1 Ref="2" ControlType="TopMarginBand" Name="TopMargin" HeightF="195.734116" />
+    <Item2 Ref="3" ControlType="BottomMarginBand" Name="BottomMargin" />
+    <Item3 Ref="4" ControlType="DetailBand" Name="Detail" HeightF="20.7921581">
+      <Controls>
+        <Item1 Ref="5" ControlType="XRLabel" Name="label20" TextFormatString="{0}" Multiline="true" Text="nome" TextAlignment="MiddleCenter" SizeF="87.49994,12.9999809" LocationFloat="562.5,0" Font="Liberation Sans, 7.5pt" Padding="5,2,0,0,100">
+          <Summary Ref="6" Running="Page" />
+          <ExpressionBindings>
+            <Item1 Ref="7" EventName="BeforePrint" PropertyName="Text" Expression="[nome]" />
+          </ExpressionBindings>
+          <StylePriority Ref="8" UseFont="false" UsePadding="false" UseTextAlignment="false" />
+        </Item1>
+        <Item2 Ref="9" ControlType="XRLabel" Name="label16" TextFormatString="{0}" Multiline="true" Text="totalvacinados" TextAlignment="MiddleCenter" SizeF="100,12.999979" LocationFloat="462.5,0" Font="Liberation Sans, 7.5pt" Padding="2,2,0,0,100">
+          <Summary Ref="10" Running="Page" />
+          <ExpressionBindings>
+            <Item1 Ref="11" EventName="BeforePrint" PropertyName="Text" Expression="[totalvacinados]" />
+          </ExpressionBindings>
+          <StylePriority Ref="12" UseFont="false" UseTextAlignment="false" />
+        </Item2>
+        <Item3 Ref="13" ControlType="XRLabel" Name="label1" TextFormatString="{0:dd/MM/yyyy}" Multiline="true" Text="dataaplicacao" TextAlignment="MiddleCenter" SizeF="125,12.9999809" LocationFloat="337.5,0" Font="Liberation Sans, 7.5pt" Padding="2,2,0,0,100">
+          <Summary Ref="14" Running="Page" />
+          <ExpressionBindings>
+            <Item1 Ref="15" EventName="BeforePrint" PropertyName="Text" Expression="[dataaplicacao]" />
+          </ExpressionBindings>
+          <StylePriority Ref="16" UseFont="false" UseTextAlignment="false" />
+        </Item3>
+        <Item4 Ref="17" ControlType="XRLabel" Name="label13" TextFormatString="{0}" Multiline="true" Text="descricao" TextAlignment="MiddleCenter" SizeF="225,12.9999781" LocationFloat="112.499992,0" Font="Liberation Sans, 7.5pt" Padding="2,2,0,0,100">
+          <Summary Ref="18" Running="Page" />
+          <ExpressionBindings>
+            <Item1 Ref="19" EventName="BeforePrint" PropertyName="Text" Expression="[descricao]" />
+          </ExpressionBindings>
+          <StylePriority Ref="20" UseFont="false" UseTextAlignment="false" />
+        </Item4>
+        <Item5 Ref="21" ControlType="XRLabel" Name="label38" TextFormatString="{0:dd/MM/yyyy}" Multiline="true" Text="datasolicitacao" TextAlignment="MiddleCenter" SizeF="112.5,12.9999809" LocationFloat="0,0" Font="Liberation Sans, 7.5pt" Padding="2,2,0,0,100">
+          <Summary Ref="22" Running="Page" />
+          <ExpressionBindings>
+            <Item1 Ref="23" EventName="BeforePrint" PropertyName="Text" Expression="[datasolicitacao]" />
+          </ExpressionBindings>
+          <StylePriority Ref="24" UseFont="false" UseTextAlignment="false" />
+        </Item5>
+      </Controls>
+    </Item3>
+    <Item4 Ref="25" ControlType="ReportHeaderBand" Name="ReportHeader" HeightF="18.2539787">
+      <Controls>
+        <Item1 Ref="26" ControlType="XRLabel" Name="lblSalePriceColumnSoldItems" Multiline="true" Text="SOLICITANTE" TextAlignment="MiddleCenter" SizeF="87.49994,16.0555515" LocationFloat="562.499939,0" Font="Liberation Sans, 7pt, style=Bold" ForeColor="White" BackColor="Black" Padding="2,2,0,0,100">
+          <StylePriority Ref="27" UseFont="false" UseForeColor="false" UseBackColor="false" UseTextAlignment="false" />
+        </Item1>
+        <Item2 Ref="28" ControlType="XRLabel" Name="lblDateColumnSoldItems" Multiline="true" Text="DATA SOLICITAÇÃO" TextAlignment="MiddleCenter" SizeF="112.5,16.0555515" LocationFloat="0,0" Font="Liberation Sans, 7pt, style=Bold" ForeColor="White" BackColor="Black" Padding="2,2,0,0,100">
+          <StylePriority Ref="29" UseFont="false" UseForeColor="false" UseBackColor="false" UseTextAlignment="false" />
+        </Item2>
+        <Item3 Ref="30" ControlType="XRLabel" Name="lblItemDescriptionColumnSoldItems" Multiline="true" Text="TOTAL VACINADOS" TextAlignment="MiddleCenter" SizeF="100.000031,16.0555515" LocationFloat="462.499939,0" Font="Liberation Sans, 7pt, style=Bold" ForeColor="White" BackColor="Black" Padding="2,2,0,0,100">
+          <StylePriority Ref="31" UseFont="false" UseForeColor="false" UseBackColor="false" UseTextAlignment="false" />
+        </Item3>
+        <Item4 Ref="32" ControlType="XRLabel" Name="lblCodeColumnSoldItems" Multiline="true" Text="DESCRIÇÃO RELATÓRIO" TextAlignment="MiddleCenter" SizeF="224.999939,16.0555515" LocationFloat="112.499947,0" Font="Liberation Sans, 7pt, style=Bold" ForeColor="White" BackColor="Black" Padding="2,2,0,0,100">
+          <StylePriority Ref="33" UseFont="false" UseForeColor="false" UseBackColor="false" UseTextAlignment="false" />
+        </Item4>
+        <Item5 Ref="34" ControlType="XRLabel" Name="lblRoomColumnSoldItems" Multiline="true" Text="DATA APLICAÇÃO" TextAlignment="MiddleCenter" SizeF="124.999969,16.0555515" LocationFloat="337.5,0" Font="Liberation Sans, 7pt, style=Bold" ForeColor="White" BackColor="Black" Padding="2,2,0,0,100">
+          <StylePriority Ref="35" UseFont="false" UseForeColor="false" UseBackColor="false" UseTextAlignment="false" />
+        </Item5>
+      </Controls>
+    </Item4>
+  </Bands>
+</XtraReportsLayoutSerializer>

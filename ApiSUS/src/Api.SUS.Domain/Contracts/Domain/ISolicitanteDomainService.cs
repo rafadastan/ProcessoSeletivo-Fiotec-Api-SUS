@@ -11,5 +11,6 @@ namespace Api.SUS.Domain.Contracts.Domain
     public interface ISolicitanteDomainService
     {
         Task CreateSolicitanteAsync(Solicitante entity);
+        Task<int> GetTotalVacinasAplicadas(DateTime date);
     }
 }

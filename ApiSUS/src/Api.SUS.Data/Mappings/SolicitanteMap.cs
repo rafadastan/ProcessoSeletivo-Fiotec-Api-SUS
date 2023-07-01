@@ -21,10 +21,6 @@ namespace Api.SUS.Data.Mappings
                 .HasColumnName("SolicitanteId")
                 .IsRequired();
 
-            builder.Property(u => u.Id)
-                .HasColumnName("Id")
-                .IsRequired();
-
             builder.Property(u => u.Nome)
                 .HasColumnName("Nome")
                 .HasMaxLength(100)
@@ -32,15 +28,12 @@ namespace Api.SUS.Data.Mappings
 
             builder.Property(u => u.CPF)
                 .HasColumnName("CPF")
-                .HasMaxLength(100)
+                .HasMaxLength(11)
                 .IsRequired();
 
             builder.Property(u => u.DataConsulta)
                 .HasColumnName("DataConsulta");
-
-            builder.HasMany(s => s.RelatorioList)
-                .WithOne(r=> r.Solicitante)
-                .HasForeignKey(c=> c.RelatorioId);
+            
         }
     }
 }

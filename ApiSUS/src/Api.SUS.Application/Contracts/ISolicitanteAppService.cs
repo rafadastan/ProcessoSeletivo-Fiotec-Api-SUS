@@ -11,5 +11,6 @@ namespace Api.SUS.Application.Contracts
     public interface ISolicitanteAppService
     {
         Task<XtraReport> SendAsync(SolicitanteModel model);
+        Task<int> GetTotalVacinasAplicada(DateTime date);
     }
 }

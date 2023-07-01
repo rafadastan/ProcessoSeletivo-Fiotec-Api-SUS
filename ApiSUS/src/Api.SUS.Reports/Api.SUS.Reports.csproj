@@ -7,11 +7,28 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Reports\RelatorioSus.vsrepx" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="Reports\RelatorioSus.vsrepx" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="DevExpress.Reporting.Core" Version="21.2.4" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\Api.SUS.Domain\Api.SUS.Domain.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="Reports\RelatorioSus.cs">
+      <DependentUpon>RelatorioSus.vsrepx</DependentUpon>
+    </Compile>
+    <Compile Update="Reports\RelatorioSus.Designer.cs">
+      <DependentUpon>RelatorioSus.vsrepx</DependentUpon>
+    </Compile>
   </ItemGroup>
 
 </Project>

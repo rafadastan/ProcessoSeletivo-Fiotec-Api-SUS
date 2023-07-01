@@ -10,7 +10,6 @@ using Api.SUS.Domain.Notifications;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using Newtonsoft.Json;
-using Api.SUS.Client.Dto;
 using Api.SUS.Domain.Contracts.Client;
 using Api.SUS.Domain.Model.IntegrationModel;
 
@@ -33,13 +32,11 @@ namespace Api.SUS.Client.Service
             _notificationContext = notificationContext;
 
             _aliasConfig = $"{configuration["IntegracaoSus:Alias"]}";
-            if (!string.IsNullOrWhiteSpace(_aliasConfig))
-                _httpClient.BaseAddress = new Uri(_httpClient.BaseAddress!, $"{_aliasConfig}/");
         }
 
-        public async Task<List<MainRequestDto>?> GetInformationAsync()
+        public async Task<MainRequestDto> GetInformationAsync()
         {
-            var responseSus = new List<MainRequestDto>();
+            var responseSus = new MainRequestDto();
 
             ConfigurationAddHeaders();
 
@@ -47,7 +44,7 @@ namespace Api.SUS.Client.Service
             {
                 Size = 1000
             };
-
+            
             using var response = await _httpClient.PostAsync(_aliasConfig, CreateStringContent(size));
 
             var ret = await response.Content.ReadAsStringAsync();
@@ -59,18 +56,19 @@ namespace Api.SUS.Client.Service
 
             if (ret != null! && response.IsSuccessStatusCode)
             {
-                responseSus = JsonConvert.DeserializeObject<List<MainRequestDto>>(ret);
+                responseSus = JsonConvert.DeserializeObject<MainRequestDto>(ret)!;
 
                 return responseSus;
             }
 
-            return _notificationContext.HasNotifications ? null : responseSus;
+            return (_notificationContext.HasNotifications ? null : responseSus)!;
         }
 
         private void ConfigurationAddHeaders()
         {
-            _httpClient.DefaultRequestHeaders.Add("Accept", "ApplicationJson");
-            _httpClient.DefaultRequestHeaders.TryAddWithoutValidation("ContentType", "ApplicationJson");
+            _httpClient.DefaultRequestHeaders.Add("Accept", "application/json");
+            _httpClient.DefaultRequestHeaders.TryAddWithoutValidation("ContentType", "application/json");
+            _httpClient.DefaultRequestHeaders.TryAddWithoutValidation("User-Agent", "application/json");
             _httpClient.DefaultRequestHeaders.Authorization =
                 new AuthenticationHeaderValue("Basic", GetHeadersAuthRyver());
         }

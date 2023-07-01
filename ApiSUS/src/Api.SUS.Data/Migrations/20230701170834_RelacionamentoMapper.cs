@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Api.SUS.Data.Migrations
 {
-    public partial class CriacaoBaseRelacionamento : Migration
+    public partial class RelacionamentoMapper : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

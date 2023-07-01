@@ -7,12 +7,8 @@ using System.Threading.Tasks;
 
 namespace Api.SUS.Domain.Entities
 {
-    public class Relatorio : Entity<Guid>
+    public class Relatorio 
     {
-        public Relatorio(Guid id) : base(id)
-        {
-        }
-
         public Guid RelatorioId { get; set; }
         public Guid SolicitanteId { get; set; }
         public DateTime DataSolicitacao { get; set; }

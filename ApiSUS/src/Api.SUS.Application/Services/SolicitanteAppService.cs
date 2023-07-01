@@ -47,12 +47,20 @@ namespace Api.SUS.Application.Services
             await _domainService.CreateSolicitanteAsync(solicitante);
             if (_notification.HasNotifications) return null;
             
-            var dadosSolicitante = await _solicitanteReadRepository.GetByCpfAndName(model.Nome, model.CPF);
+            var dadosSolicitante = await _solicitanteReadRepository.GetByCpf(model.CPF);
 
             var dadosRelatorio =
                 await _relatorioReadRepository.GetAllBySolicitanteAsync(dadosSolicitante.SolicitanteId);
             
             return !_notification.HasNotifications ? new RelatorioSus(dadosRelatorio) : null!;
+        }
+
+        public async Task<int> GetTotalVacinasAplicada(DateTime date)
+        {
+            var total = await _domainService.GetTotalVacinasAplicadas(date);
+            if (_notification.HasNotifications) return 0;
+
+            return total;
         }
 
         private SolicitanteDto SolicitanteFactory(SolicitanteModel model)
@@ -61,7 +69,7 @@ namespace Api.SUS.Application.Services
             {
                 Nome = model.Nome,
                 CPF = model.CPF,
-                DataConsulta = model.DataSolicitante ?? DateTime.Now.Date
+                DataConsulta = DateTime.Now.Date
             };
         }
     }

@@ -9,11 +9,9 @@ namespace Api.SUS.Data.Repositories
         private readonly SqlContext _sqlContext;
         private IDbContextTransaction _transaction;
 
-        public UnitOfWork(SqlContext sqlContext, 
-            IDbContextTransaction transaction)
+        public UnitOfWork(SqlContext sqlContext)
         {
             _sqlContext = sqlContext;
-            _transaction = transaction;
         }
 
         public async Task BeginTransactionAsync()
@@ -25,12 +23,13 @@ namespace Api.SUS.Data.Repositories
 
         public async Task CommitAsync()
         {
-            await _transaction.CommitAsync();
+            await _sqlContext
+                .Database.CommitTransactionAsync();
         }
 
         public async Task RollbackAsync()
         {
-            await _transaction.RollbackAsync();
+            await _sqlContext.Database.RollbackTransactionAsync();
         }
 
         public async Task SaveAsync()

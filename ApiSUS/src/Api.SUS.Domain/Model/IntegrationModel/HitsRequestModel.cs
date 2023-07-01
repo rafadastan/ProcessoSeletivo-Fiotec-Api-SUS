@@ -16,6 +16,6 @@ namespace Api.SUS.Domain.Model.IntegrationModel
         public double MaxScore { get; set; }
 
         [JsonProperty(PropertyName = "hits")]
-        public ResponseSusModel Hits { get; set; }
+        public List<ResponseSusModel> Hits { get; set; }
     }
 }

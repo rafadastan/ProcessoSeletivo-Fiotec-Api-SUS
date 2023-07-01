@@ -13,6 +13,6 @@ namespace Api.SUS.Domain.Model.IntegrationModel
         public int Value { get; set; }
 
         [JsonProperty(PropertyName = "relation")]
-        public int Relation { get; set; }
+        public string Relation { get; set; }
     }
 }

@@ -15,17 +15,16 @@ namespace Api.SUS.Data.ReadRepositories
         private readonly string _susConnectionString;
 
         public RelatorioReadRepository(
-            IConfiguration configuration, 
-            string susConnectionString)
+            IConfiguration configuration)
         {
             _configuration = configuration;
-            _susConnectionString = susConnectionString;
+            _susConnectionString = _configuration["ConnectionStrings:ApiSus"];
         }
 
         public async Task<Relatorio> GetByIdAsync(Guid id)
         {
             await using var connection = new SqlConnection(_susConnectionString);
-            var query = await connection.QueryAsync(@"
+            var query = await connection.QueryAsync<Relatorio>(@"
                 SELECT * FROM Relatorio r
                 WHERE r.Id = @Id",
                 new
@@ -49,8 +48,7 @@ namespace Api.SUS.Data.ReadRepositories
                 });
 
 
-            return query.ToList()
-                .Cast<RelatorioBySolicitanteDto>();
+            return query.ToList();
         }
     }
 }

@@ -13,11 +13,20 @@ namespace Api.SUS.Application.Profiles
     {
         public SolicitanteProfile()
         {
-            CreateMap<Solicitante, SolicitanteDto>()
-                .AfterMap((src, dest) =>
-                {
-                    src.SolicitanteId = Guid.NewGuid();
-                }).ReverseMap();
+            CreateMap<SolicitanteDto, Solicitante>()
+                .ForMember(
+                    dest => dest.SolicitanteId,
+                    opt => opt.MapFrom(src => Guid.NewGuid()))
+                .ForMember(
+                    dest => dest.Nome,
+                    opt => opt.MapFrom(src => src.Nome))
+                .ForMember(
+                    dest => dest.CPF,
+                    opt => opt.MapFrom(src => src.CPF))
+                .ForMember(
+                    dest => dest.DataConsulta,
+                    opt => opt.MapFrom(src => src.DataConsulta))
+                .ReverseMap();
         }
     }
 }

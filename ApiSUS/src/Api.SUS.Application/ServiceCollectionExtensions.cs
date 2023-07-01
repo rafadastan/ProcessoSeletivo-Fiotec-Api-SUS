@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Api.SUS.Application.Contracts;
 using Api.SUS.Application.Services;
+using FluentValidation.Results;
 
 namespace Api.SUS.Application
 {
@@ -19,6 +20,8 @@ namespace Api.SUS.Application
             services.AddTransient<IRelatorioAppService, RelatorioAppService>();
             services.AddTransient<ISolicitanteAppService, SolicitanteAppService>();
 
+            services.AddScoped<ValidationResult>();
+            
             return services;
         }
     }

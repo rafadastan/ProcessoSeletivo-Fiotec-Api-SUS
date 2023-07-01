@@ -37,9 +37,9 @@ namespace Api.SUS.Domain.Services
         { 
             Solicitante solicitanteEntity;
 
-            if (CpfValidation.IsValid(entity.CPF))
+            if (!CpfValidation.IsValid(entity.CPF))
             {
-                _notification.AddNotification(entity.Id.ToString(), $"{entity.CPF} é invalido.");
+                _notification.AddNotification(entity.SolicitanteId.ToString(), $"{entity.CPF} é invalido.");
                 return;
             }
 
@@ -61,35 +61,67 @@ namespace Api.SUS.Domain.Services
             }
             else
             {
-                solicitanteEntity = await _solicitanteReadRepo.GetByCpfAndName(entity.CPF, entity.Nome);
+                solicitanteEntity = await _solicitanteReadRepo.GetByCpf(entity.CPF);
             }
             
             var requestListAsync = await _clientService.GetInformationAsync();
 
-            if (requestListAsync == null)
-                _notification.AddNotification(Guid.NewGuid().ToString(), $"Erro ao integrar a api do sus.");
-
-
-            var requestFilterList 
-                = requestListAsync?.Where(r => r.Hits.Hits.Source.VacinacaFabricanteNome == "PFIZER" 
-                                              && r.Hits.Hits.Source.EstabelecimentoUf == "RJ");
-
-            foreach (var request in requestFilterList)
+            if (requestListAsync == null!)
             {
-                var relatorio = new Relatorio(Guid.NewGuid())
-                {
-                    SolicitanteId = solicitanteEntity!.SolicitanteId,
-                    DataSolicitacao = solicitanteEntity.DataConsulta,
-                    Descricao = $"Relatório Vacinas Pfizer aplicadas no RJ_{request?.Hits?.Hits?.Source?.DataAplicacao}",
-                    DataAplicacao = request.Hits.Hits.Source.DataAplicacao,
-                    TotalVacinados = request.Shareds.Total
-                };
-
-                await CreateRelatorioAsync(relatorio);
-                if (_notification.HasNotifications) return null;
+                _notification.AddNotification(Guid.NewGuid().ToString(), $"Erro ao integrar a api do sus.");
+                return;
             }
 
-            return requestFilterList;
+
+            var requestFilterList
+                = requestListAsync?.Hits.Hits.Where(c => c.Source.VacinacaFabricanteNome == "PFIZER"
+                                                           && c.Source.EstabelecimentoUf == "RJ");
+
+            var totalVacina = requestListAsync!.Hits.TotalRequestModel.Value;
+
+            if (requestFilterList != null)
+            {
+                var responseSusModels = requestFilterList.ToList();
+                foreach (var request in responseSusModels)
+                {
+                    var relatorio = new Relatorio
+                    {
+                        RelatorioId = Guid.NewGuid(),
+                        SolicitanteId = solicitanteEntity!.SolicitanteId,
+                        DataSolicitacao = solicitanteEntity.DataConsulta,
+                        Descricao = $"Relatório Vacinas Pfizer aplicadas no RJ_{request?.Source.DataAplicacao:d}",
+                        DataAplicacao = request!.Source.DataAplicacao,
+                        TotalVacinados = responseSusModels.Count()
+                    };
+
+                    await CreateRelatorioAsync(relatorio);
+                    if (_notification.HasNotifications) return;
+                }
+            }
+        }
+
+        public async Task<int> GetTotalVacinasAplicadas(DateTime date)
+        {
+            var requestListAsync = await _clientService.GetInformationAsync();
+
+            if (requestListAsync == null!)
+            {
+                _notification.AddNotification(Guid.NewGuid().ToString(), $"Erro ao integrar a api do sus.");
+                return 0;
+            }
+
+            var requestFilterList
+                = requestListAsync?.Hits.Hits.Where(c => c.Source.VacinacaFabricanteNome == "PFIZER"
+                                                         && c.Source.EstabelecimentoUf == "RJ" 
+                                                         && c.Source.DataAplicacao == date);
+
+            if (requestFilterList == null)
+            {
+                _notification.AddNotification(Guid.NewGuid().ToString(), $"Nenhum registro encontrado.");
+                return 0;
+            }
+
+            return requestFilterList.Count();
         }
 
         private async Task CreateRelatorioAsync(Relatorio relatorio)

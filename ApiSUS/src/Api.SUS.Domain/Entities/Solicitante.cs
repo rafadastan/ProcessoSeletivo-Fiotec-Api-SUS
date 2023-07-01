@@ -7,12 +7,8 @@ using System.Threading.Tasks;
 
 namespace Api.SUS.Domain.Entities
 {
-    public class Solicitante : Entity<Guid>
+    public class Solicitante
     {
-        public Solicitante(Guid id) : base(id)
-        {
-        }
-
         public Guid SolicitanteId { get; set; }
         public string Nome { get; set; }
         public string CPF { get; set; }

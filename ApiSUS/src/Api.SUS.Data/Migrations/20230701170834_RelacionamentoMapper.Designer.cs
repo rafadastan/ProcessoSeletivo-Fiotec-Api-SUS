@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Api.SUS.Data.Migrations
 {
     [DbContext(typeof(SqlContext))]
-    [Migration("20230630184409_CriacaoBaseRelacionamento")]
-    partial class CriacaoBaseRelacionamento
+    [Migration("20230701170834_RelacionamentoMapper")]
+    partial class RelacionamentoMapper
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

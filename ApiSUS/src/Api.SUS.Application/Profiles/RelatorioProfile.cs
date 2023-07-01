@@ -14,11 +14,23 @@ namespace Api.SUS.Application.Profiles
     {
         public RelatorioProfile()
         {
-            CreateMap<Relatorio, RelatorioDto>()
-                .AfterMap((src, dest) =>
-                {
-                    src.RelatorioId = Guid.NewGuid();
-                }).ReverseMap();
+            CreateMap<RelatorioDto, Relatorio>()
+                .ForMember(
+                    dest => dest.RelatorioId,
+                    opt => opt.MapFrom(src => Guid.NewGuid()))
+                .ForMember(
+                    dest => dest.DataAplicacao,
+                    opt => opt.MapFrom(src => src.DataAplicacao))
+                .ForMember(
+                    dest => dest.Descricao,
+                    opt => opt.MapFrom(src => src.Descricao))
+                .ForMember(
+                    dest => dest.TotalVacinados,
+                    opt => opt.MapFrom(src => src.TotalVacinados))
+                .ForMember(
+                    dest => dest.DataSolicitacao,
+                    opt => opt.MapFrom(src => src.DataSolicitacao))
+                .ReverseMap();
         }
     }
 }

@@ -21,9 +21,6 @@ namespace Api.SUS.Data.Mappings
                 .HasColumnName("RelatorioId")
                 .IsRequired();
 
-            builder.Property(u => u.Id)
-                .HasColumnName("Id");
-
             builder.Property(u => u.SolicitanteId)
                 .HasColumnName("SolicitanteId")
                 .IsRequired();
@@ -41,6 +38,9 @@ namespace Api.SUS.Data.Mappings
             builder.Property(u => u.TotalVacinados)
                 .HasColumnName("TotalVacinados");
 
+            builder.HasOne(s => s.Solicitante)
+                .WithMany()
+                .HasForeignKey(c => c.SolicitanteId);
         }
     }
 }

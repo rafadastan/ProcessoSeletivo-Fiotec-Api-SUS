@@ -32,5 +32,20 @@ namespace Api.SUS.Presentation.Controllers
                 CustomResponse(ModelState) :
                 CustomResponse(await _solicitanteAppService.SendAsync(model));
         }
+
+        [AllowAnonymous]
+        [HttpGet("{data}")]
+        [ProducesResponseType(200)]
+        [ProducesResponseType(typeof(BadRequestResult), 400)]
+        [ProducesResponseType(typeof(BadHttpRequestException), 500)]
+        public async Task<IActionResult> GetTotalVacinasAplicada(DateTime data)
+        {
+            var result = await _solicitanteAppService.GetTotalVacinasAplicada(data);
+
+            if (result == null)
+                return NoContent();
+
+            return Ok(result);   
+        }
     }
 }
