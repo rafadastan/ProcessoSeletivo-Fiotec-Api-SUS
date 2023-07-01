@@ -72,7 +72,7 @@ namespace Api.SUS.Client.Service
             _httpClient.DefaultRequestHeaders.TryAddWithoutValidation("ContentType", "application/json");
             _httpClient.DefaultRequestHeaders.TryAddWithoutValidation("User-Agent", "application/json");
             _httpClient.DefaultRequestHeaders.Authorization =
-                new AuthenticationHeaderValue("Basic", GetHeadersAuthRyver());
+                new AuthenticationHeaderValue("Basic", GetHeadersAuthSus());
         }
 
         private StringContent CreateStringContent<T>(T dto)
@@ -80,7 +80,7 @@ namespace Api.SUS.Client.Service
             return new StringContent(JsonConvert.SerializeObject(dto), Encoding.UTF8, "application/json");
         }
 
-        private string GetHeadersAuthRyver() =>
+        private string GetHeadersAuthSus() =>
             _configuration["IntegracaoSus:SecretKey"];
     }
 }
