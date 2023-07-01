@@ -14,7 +14,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\src\Api.SUS.Domain\Api.SUS.Domain.csproj" />
+    <ProjectReference Include="..\Api.SUS.Domain\Api.SUS.Domain.csproj" />
   </ItemGroup>
 
 </Project>

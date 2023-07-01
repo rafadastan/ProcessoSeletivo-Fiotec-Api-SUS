@@ -34,13 +34,13 @@ namespace Api.SUS.Presentation.Controllers
         }
 
         [AllowAnonymous]
-        [HttpGet("{data}")]
+        [HttpGet("{dataAplicacaoVacina}")]
         [ProducesResponseType(200)]
         [ProducesResponseType(typeof(BadRequestResult), 400)]
         [ProducesResponseType(typeof(BadHttpRequestException), 500)]
-        public async Task<IActionResult> GetTotalVacinasAplicada(DateTime data)
+        public async Task<IActionResult> GetTotalVacinasAplicada(DateTime dataAplicacaoVacina)
         {
-            var result = await _solicitanteAppService.GetTotalVacinasAplicada(data);
+            var result = await _solicitanteAppService.GetTotalVacinasAplicada(dataAplicacaoVacina);
 
             if (result == null)
                 return NoContent();

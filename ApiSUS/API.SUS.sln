@@ -33,7 +33,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Api.SUS.Presentation", "src
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "4.3 Client", "4.3 Client", "{D1C193B6-B713-48E2-A829-1BE0E2FA381F}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Api.SUS.Client", "Api.SUS.Client\Api.SUS.Client.csproj", "{8991615E-1294-4141-8A96-D6ECACA5E75B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Api.SUS.Client", "src\Api.SUS.Client\Api.SUS.Client.csproj", "{8991615E-1294-4141-8A96-D6ECACA5E75B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
