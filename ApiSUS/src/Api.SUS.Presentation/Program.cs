@@ -1,12 +1,9 @@
 using Api.SUS.Application;
 using Api.SUS.Client;
 using Api.SUS.Data;
-using Api.SUS.Data.Contexts;
 using Api.SUS.Domain;
 using Api.SUS.Domain.Notifications;
 using Api.SUS.Presentation.Configuration;
-using DevExpress.XtraCharts;
-using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
